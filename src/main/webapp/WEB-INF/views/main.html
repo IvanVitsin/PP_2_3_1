@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--<head>-->
+<!--    <style>-->
+<!--        #userss {-->
+<!--            font-family: Arial, Helvetica, sans-serif;-->
+<!--            border-collapse: collapse;-->
+<!--            width: 100%;-->
+<!--        }-->
+
+<!--        #userss td, #customers th {-->
+<!--            border: 1px solid #ddd;-->
+<!--            padding: 8px;-->
+<!--        }-->
+
+<!--        #userss tr:nth-child(even){background-color: #f2f2f2;}-->
+
+<!--        #userss tr:hover {background-color: #ddd;}-->
+
+<!--        #userss th {-->
+<!--            padding-top: 12px;-->
+<!--            padding-bottom: 12px;-->
+<!--            text-align: left;-->
+<!--            background-color: #04AA6D;-->
+<!--            color: white;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<body>
+
+<h1>Users Table</h1>
+
+<table id="userss">
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Mail</th>
+        <th scope="col">Age</th>
+        <th scope="col">Edit/Dell</th>
+    </tr>
+    <tr th:each="user : ${user}">
+    <td th:text="${user.getId()}"></td>
+    <td th:text="${user.getName()}"></td>
+    <td th:text="${user.getLastName()}"></td>
+    <td th:text="${user.getEmail()}"></td>
+    <td th:text="${user.getAge()}"></td>
+        <td>
+        <a th:href="@{/{id}/edit (id = ${user.getId()})}">
+            <input type="button" value="Edit"/>
+        </a>
+        <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
+            <input type="submit" value="Delete">
+        </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+
+<form action="/new">
+    <button type="submit">Add</button>
+</form>
+
+</body>
+</html>
